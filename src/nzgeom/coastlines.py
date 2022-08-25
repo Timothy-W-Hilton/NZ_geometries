@@ -59,11 +59,19 @@ def get_NZ_coastlines(
 ) -> gpd.GeoDataFrame:
     """return a geopandas.GeoDataFrame containing the NZ coastline.
 
-    The Chatham Islands and the Kermadec Islands are east of 180 degress
-    longitude. In many plotting packages (e.g. matplotlib) with default options
-    including these islands in a plot of New Zealand causes the plot's
-    horizontal axis to span roughly -177 deg E to 177 deg E, that is, the whole
-    world.
+    The reasoning behind the options to exclude the Chatham Islands and Kermadec
+    islands: The `Chatham Islands
+    <https://en.wikipedia.org/wiki/Chatham_Islands>`_ and the `Kermadec Islands
+    <https://en.wikipedia.org/wiki/Kermadec_Islands>`_ sit east of 180 degrees E
+    longitude. When plotting the full contents of the New Zealand coastlines
+    dataset some plotting packages' default options (e.g. matplotlib) produce a
+    horizontal axis spanning the full range of longitudes in the dataset:
+    roughly -177 deg E to 177 deg E. This produces a plot with the Chathams and
+    Kermadecs as a small spec at 177 deg E on the far right and the rest of New
+    Zealand as a marginally larger spec at -177 deg E on the far left, and blank
+    space everywhere else. The default options to :py:func:`get_NZ_coastlines`
+    allow plotting the North and South Islands of New Zealand in a more useful
+    way using default plotting options.
 
     ARGS:
         include_chatham_islands: if true, include the coastline of the Chatham
