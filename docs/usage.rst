@@ -1,7 +1,7 @@
 Usage Examples
 ==============
 
-coastlines
+Coastlines
 ----------
 
 >>> import nzgeom.coastlines
@@ -28,6 +28,22 @@ If matplotlib is available, it's easy to plot the coastline geodataframe (or add
   >>> plt.show()
 
 .. image:: NZcoastlines.png
+
+clipping to a bounding box
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Restrict the coastlines polygons returned by providing a bounding box. The full
+coastlines dataset contains more than 9000 polygons, so this can speed things up
+if you are focussed on a particular area.
+
+>>> import nzgeom.coastlines
+>>> c =  nzgeom.coastlines.get_NZ_coastlines(bbox=(173.5, -37.5, 176.0, -35.7))
+clipping to bounding box (173.5, -37.5, 176.0, -35.7)
+>>> import matplotlib.pyplot as plt
+>>> ax = c.plot()
+>>> plt.show()
+
+.. image:: NZcoastlines_bbox.png
 
 Council region boundaries
 -------------------------
