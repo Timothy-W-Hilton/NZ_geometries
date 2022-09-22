@@ -1,8 +1,15 @@
 """access polygons describing New Zealand coastlines.
 """
 
+import sys
+
+if sys.version_info >= (3, 10):
+    from importlib.resources import files
+else:
+    # importlib_resources provides functionality of standard library's
+    # importlib.resources backported to older versions of python
+    from importlib_resources import files
 from typing import Tuple
-from importlib.resources import files
 import geopandas as gpd
 from shapely.geometry import Polygon
 import numpy as np
