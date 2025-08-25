@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) beginning with release 0.1.0.
 
+## [0.1.7] - 2025-08-26
+
+Formalize testing for Python 3.9, 3.10, 3.11, 3.12, 3.13.  Change Python requirement to >= 3.9.
+
 ## [0.1.6] - 2022-08-25
 
 - documentation on [Read the Docs](https://nz-geometries.readthedocs.io/en/latest/index.html#/)
