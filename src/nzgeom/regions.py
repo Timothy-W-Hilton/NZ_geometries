@@ -1,7 +1,13 @@
 """access polygons describing New Zealand council regions
 """
+import sys
 
-from importlib.resources import files
+if sys.version_info >= (3, 10):
+    from importlib.resources import files
+else:
+    # importlib_resources provides functionality of standard library's
+    # importlib.resources backported to older versions of python
+    from importlib_resources import files
 from pathlib import Path
 import geopandas as gpd
 

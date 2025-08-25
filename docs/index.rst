@@ -3,6 +3,10 @@ NZ Geometry
 
 Provides geospatial geometries describing New Zealand coastlines and regional administrative boundaries.
 
+.. image:: ./mask_demo.png
+
+The two modules to import are:
+
 .. autosummary::
     :caption: Library documentation
     :toctree: generated
@@ -14,6 +18,7 @@ Provides geospatial geometries describing New Zealand coastlines and regional ad
 .. toctree::
    :caption: User Reference
 
+   install
    usage
 
 
