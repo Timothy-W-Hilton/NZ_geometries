@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - master
+      - dev
     tags:
       - '*'
     workflow_dispatch:  # This enables manual triggering
