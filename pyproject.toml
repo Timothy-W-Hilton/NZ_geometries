@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nzgeom"
-version = "0.1.9"
+version = "1.0.0"
 authors = [
     {name = "Timothy W. Hilton", email = "t.hilton@gns.cri.nz"}
 ]
