@@ -25,19 +25,19 @@ jobs:
     - name: Create dev version for TestPyPI
       if: github.ref == 'refs/heads/dev'
       run: |
-        echo "Extracting version from setup.cfg..."
-        CURRENT_VERSION=$(python3 -c "import configparser; c=configparser.ConfigParser(); c.read('setup.cfg'); print(c['metadata']['version'])")
+        echo "Extracting version from pyproject.toml..."
+        CURRENT_VERSION=$(python3 -c "import tomllib; f=open('pyproject.toml', 'rb'); data=tomllib.load(f); print(data['project']['version']); f.close()")
         echo "Current version: $CURRENT_VERSION"
 
         DEV_VERSION="${CURRENT_VERSION}.dev${{ github.run_number }}"
         echo "Creating dev version: $DEV_VERSION"
 
-        # Update version in setup.cfg
-        sed -i "s/version = .*/version = $DEV_VERSION/" setup.cfg
+        # Update version in pyproject.toml
+        sed -i "s/version = \".*\"/version = \"$DEV_VERSION\"/" pyproject.toml
 
         # Verify the change
         echo "Updated version:"
-        python3 -c "import configparser; c=configparser.ConfigParser(); c.read('setup.cfg'); print(c['metadata']['version'])"
+        python3 -c "import tomllib; f=open('pyproject.toml', 'rb'); data=tomllib.load(f); print(data['project']['version']); f.close()"
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
