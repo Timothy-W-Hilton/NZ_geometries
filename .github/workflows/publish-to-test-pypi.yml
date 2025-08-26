@@ -25,47 +25,19 @@ jobs:
     - name: Create dev version for TestPyPI
       if: github.ref == 'refs/heads/dev'
       run: |
-        pip install tomli-w tomli
-        python3 -c "
-        import tomli, tomli_w
+        echo "Extracting version from setup.cfg..."
+        CURRENT_VERSION=$(python3 -c "import configparser; c=configparser.ConfigParser(); c.read('setup.cfg'); print(c['metadata']['version'])")
+        echo "Current version: $CURRENT_VERSION"
 
-        with open('pyproject.toml', 'rb') as f:
-          data = tomli.load(f)
+        DEV_VERSION="${CURRENT_VERSION}.dev${{ github.run_number }}"
+        echo "Creating dev version: $DEV_VERSION"
 
-        # Try different possible locations for version
-        current_version = None
+        # Update version in setup.cfg
+        sed -i "s/version = .*/version = $DEV_VERSION/" setup.cfg
 
-        # Check if using [project] table (PEP 621)
-        if 'project' in data and 'version' in data['project']:
-            current_version = data['project']['version']
-            location = 'project'
-        # Check if using [tool.setuptools]
-        elif 'tool' in data and 'setuptools' in data['tool'] and 'version' in data['tool']['setuptools']:
-            current_version = data['tool']['setuptools']['version']
-            location = 'tool.setuptools'
-        # Check if using setuptools_scm or other dynamic versioning
-        elif 'project' in data and 'dynamic' in data['project'] and 'version' in data['project']['dynamic']:
-            print('Version is set to dynamic - cannot modify')
-            exit(0)
-        else:
-            print('Could not find version in pyproject.toml')
-            print('Available top-level keys:', list(data.keys()))
-            if 'project' in data:
-                print('project keys:', list(data['project'].keys()))
-            exit(1)
-
-        dev_version = f'{current_version}.dev${{ github.run_number }}'
-        print(f'Creating dev version: {dev_version}')
-
-        # Update version in the correct location
-        if location == 'project':
-            data['project']['version'] = dev_version
-        elif location == 'tool.setuptools':
-            data['tool']['setuptools']['version'] = dev_version
-
-        with open('pyproject.toml', 'wb') as f:
-            tomli_w.dump(data, f)
-        "
+        # Verify the change
+        echo "Updated version:"
+        python3 -c "import configparser; c=configparser.ConfigParser(); c.read('setup.cfg'); print(c['metadata']['version'])"
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
