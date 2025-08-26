@@ -14,7 +14,7 @@ TestPyPi.
 ## [0.1.8] - 2025-08-26
 
 Update CI/CD GitHub workflow to use trusted publisher and publish tagged commits
-on branch master to PyPi and all pushes to TestPyPi.
+on branch main to PyPi and all pushes to TestPyPi.
 
 ## [0.1.7] - 2025-08-26
 

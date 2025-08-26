@@ -3,11 +3,11 @@
 
 name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
 
-# only publish branch master (https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-branches-and-tags)
+# only publish branch main (https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-branches-and-tags)
 on:
   push:
     branches:
-      - master
+      - main
       - dev
     tags:
       - '*'
@@ -59,7 +59,7 @@ jobs:
   publish-to-pypi:
     name: >-
       Publish Python 🐍 distribution 📦 to PyPI
-    if: github.ref_type == 'tag' && github.ref_name == 'master'
+    if: github.ref_type == 'tag' && github.ref_name == 'main'
     needs:
     - build
     runs-on: ubuntu-latest
