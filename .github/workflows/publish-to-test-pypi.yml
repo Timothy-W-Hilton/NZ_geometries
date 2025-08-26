@@ -25,18 +25,18 @@ jobs:
     - name: Create dev version for TestPyPI
       if: github.ref == 'refs/heads/dev'
       run: |
-    pip install tomli-w tomli
-    python3 -c "
-    import tomli, tomli_w
-    with open('pyproject.toml', 'rb') as f:
-        data = tomli.load(f)
-    current = data['project']['version']
-    dev_version = f'{current}.dev${{ github.run_number }}'
-    print(f'Creating dev version: {dev_version}')
-    data['project']['version'] = dev_version
-    with open('pyproject.toml', 'wb') as f:
-        tomli_w.dump(data, f)
-    "
+        pip install tomli-w tomli
+        python3 -c "
+        import tomli, tomli_w
+        with open('pyproject.toml', 'rb') as f:
+          data = tomli.load(f)
+        current = data['project']['version']
+        dev_version = f'{current}.dev${{ github.run_number }}'
+        print(f'Creating dev version: {dev_version}')
+        data['project']['version'] = dev_version
+        with open('pyproject.toml', 'wb') as f:
+          tomli_w.dump(data, f)
+        "
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
