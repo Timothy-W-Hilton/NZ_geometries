@@ -29,8 +29,6 @@ Homepage = "https://github.com/Timothy-W-Hilton/NZ_geometries"
 [tool.setuptools]
 package-dir = {"" = "src"}
 
-[tool.setuptools.packages.find]
-where = ["src"]
 
 [tool.setuptools.package-data]
 "nzgeom.data" = [
