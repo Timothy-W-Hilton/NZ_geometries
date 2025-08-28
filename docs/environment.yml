@@ -1,7 +1,8 @@
 name: nzgeom-devel
+channels:
+  - conda-forge
 dependencies:
   - python
-  - pip
   - geopandas
   - rtree
   - nzgeom
