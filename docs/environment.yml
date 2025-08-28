@@ -1,6 +1,7 @@
-name: venv-nzgeom-devel
+name: nzgeom-devel
 dependencies:
-  - python=3.10
+  - python
+  - pip
   - geopandas
   - rtree
   - nzgeom
