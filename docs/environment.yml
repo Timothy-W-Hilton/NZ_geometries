@@ -3,6 +3,7 @@ dependencies:
   - python=3.10
   - geopandas
   - rtree
+  - nzgeom
 
   # development
   - sphinx
@@ -10,6 +11,3 @@ dependencies:
   - sphinx-autodoc-typehints
   - m2r2
 
-  - pip
-  - pip:
-      - nzgeom

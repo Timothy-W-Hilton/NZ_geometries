@@ -1,26 +1,9 @@
-# version: 2
-
-# build:
-#   os: "ubuntu-20.04"
-#   tools:
-#     python: "3.10"
-
-# # Build from the docs/ directory with Sphinx
-# sphinx:
-#   configuration: docs/conf.py
-
-# # Explicitly set the version of Python and its requirements
-# python:
-#   install:
-#     - requirements: docs/requirements.txt
-
-
+# adapted from https://docs.readthedocs.com/platform/stable/guides/conda.html#id1
 version: 2
-
 build:
-  os: "ubuntu-20.04"
+  os: "ubuntu-24.04"
   tools:
-    python: "mambaforge-4.10"
+    python: "miniconda3-3.12-24.9"   # see https://docs.readthedocs.com/platform/stable/guides/conda.html#making-builds-faster-with-mamba
 
 # Build from the docs/ directory with Sphinx
 sphinx:
